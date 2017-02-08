@@ -1,4 +1,3 @@
-<!doctype html>
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
@@ -13,13 +12,27 @@
         <script src="js/vendor/jquery-3.1.1.min.js"></script>
     </head>
     <body>
-    <table>
-        <?php include 'prueba.php';?>
-    </table>
+        <header>
+            <ul>
+                <li>
+                    Inicio
+                </li>
+                <li>
+                   <a href="cines.php"> Cines </a>
+                </li>
+                <li>
+                    <a href="cartelera.php"> Cartelera </a>
+                </li>
+                <li>
+                    <a href="reservar.php"> Reservar </a>
+                </li>
+            </ul>
+        </header>
+        <section>
 
-        <p>Hello world! This is HTML5 Boilerplate.</p>
+        </section>
 
 
-
+    <?php include 'footer.php'?>
     </body>
 </html>

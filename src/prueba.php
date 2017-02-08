@@ -30,5 +30,4 @@
         echo '<td>' . $cine[0] . '</td>';
         echo '<td>' . $cine[1] . '</td>';
         echo "</tr>";
-        echo 'fin';
     }
