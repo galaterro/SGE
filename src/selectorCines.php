@@ -6,8 +6,8 @@
  * Time: 16:49
  */
 require 'connection.php';
-require 'getcines.php';
-echo '<select>';
+require 'helperDDBB.php';
+echo '<select name="cine">';
 
 $conexion = getCon();
 $cines = getCines($conexion);

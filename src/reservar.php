@@ -31,7 +31,7 @@
     </header>
 </div>
 <div class="wrapper">
-    <form method="get" action>
+    <form method="get" action="peliculas.php">
         <?php include 'selectorCines.php'?>
     </form>
 
