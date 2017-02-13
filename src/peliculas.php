@@ -11,10 +11,11 @@ include 'helperDDBB.php';
     <title></title>
 </head>
 <body>
-<?php include ''?>
-<?php
-$conexion = getCon();
-getPeliculas($conexion,$nombre);
-?>
+<form>
+    <?php
+    $conexion = getCon();
+    getPeliculas($conexion,$nombre);
+    ?>
+</form>
 </body>
 </html>

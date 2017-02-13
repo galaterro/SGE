@@ -7,7 +7,6 @@
  */
 require 'connection.php';
 require 'helperDDBB.php';
-echo '<select name="cine">';
 
 $conexion = getCon();
 $cines = getCines($conexion);
@@ -15,5 +14,4 @@ $cines = getCines($conexion);
 while ($cine = $cines->fetch_row()) {
     echo '<option value="' . $cine[1] . '">' . $cine[1] . '</option>';
 }
-echo "</select>";
 closeCon($conexion);

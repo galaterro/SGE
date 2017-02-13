@@ -32,8 +32,11 @@
 </div>
 <div class="wrapper">
     <form method="get" action="peliculas.php">
-        <?php include 'selectorCines.php'?>
-        <input type="submit" name="buscar" value="Buscar">
+        Seleccione su cine:
+        <select name="cine">
+            <?php include 'selectorCines.php'?>
+        </select>
+        <input type="submit" value="Buscar">
     </form>
 
     <section>
