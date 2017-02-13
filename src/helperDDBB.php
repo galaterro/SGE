@@ -12,9 +12,16 @@ function getCines($mysqli) {
 
 
 function getPeliculas($mysqli,$nombre){
-/*    $peliculas = $mysqli->query("Select * FROM pelicula WHERE id_sala = (
-SELECT id_sala from sala WHERE id_cine =
-(SELECT id_cine WHERE nombre_cine = " . $nombre . "))");*/
-    $salas = $mysqli->query("SELECT id_cine FROM cine WHERE nombre_cine = " . $nombre );
-
+    $cine = $mysqli->query("SELECT id_cine FROM cine WHERE nombre_cine = " . $nombre );
+    $salas = $mysqli->query("SELECT id_sala FROM sala WHERE id_cine = " . $cine);
+    $peliculas[] = null;
+    $contador = 0;
+    while ($sala = $salas->fetch_row()) {
+        echo $sala[0] . " " . $sala[1];
+        $peliculas[$contador] = $mysqli->query("SELECT * FROM pelicula WHERE id_sala = " . $sala[0]);
+        $contador++;
+    }
+    for($i = 0;$i < count($peliculas);$i++){
+        echo $peliculas[$i][2];
+    }
 }

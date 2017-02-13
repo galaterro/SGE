@@ -1,10 +1,3 @@
-
-/**
- * Created by IntelliJ IDEA.
- * User: juanxxiii
- * Date: 10/02/2017
- * Time: 19:22
- */
 <!DOCTYPE html>
 <?php
 session_start();
@@ -20,6 +13,7 @@ require 'helperDDBB.php';
 <body>
 <?php
 $conexion = getCon();
+getPeliculas($conexion,$nombre);
 ?>
 </body>
 </html>

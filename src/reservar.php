@@ -33,6 +33,7 @@
 <div class="wrapper">
     <form method="get" action="peliculas.php">
         <?php include 'selectorCines.php'?>
+        <input type="submit" name="buscar" value="Buscar">
     </form>
 
     <section>
