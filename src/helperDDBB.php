@@ -11,17 +11,25 @@ function getCines($mysqli) {
 }
 
 
-function getPeliculas($mysqli,$nombre){
-    $cine = $mysqli->query("SELECT id_cine FROM cine WHERE nombre_cine = " . $nombre );
-    $salas = $mysqli->query("SELECT id_sala FROM sala WHERE id_cine = " . $cine);
-    $peliculas[] = null;
-    $contador = 0;
+/**
+ * @param $mysqli
+ * @param $nombre
+ */
+function getPeliculas($mysqli, $nombre){
+    echo "<p>Peliculas que hay disponibles en " . $nombre . ":</p>";
+    $cine = $mysqli->query("SELECT id_cine FROM cine WHERE nombre_cine = '" . $nombre . "'");
+    $cine = $cine->fetch_row();
+    $salas = $mysqli->query("SELECT id_sala FROM sala WHERE id_cine = " . $cine[0] );
+
     while ($sala = $salas->fetch_row()) {
-        echo $sala[0] . " " . $sala[1];
-        $peliculas[$contador] = $mysqli->query("SELECT * FROM pelicula WHERE id_sala = " . $sala[0]);
-        $contador++;
+        $peliculas = $mysqli->query("SELECT * FROM pelicula WHERE id_sala = " . $sala[0]);
+        while($peli = $peliculas->fetch_row()){
+            echo "<p>Nombre de la película: " . $peli[2], PHP_EOL;
+            echo "Duración de la película: " . $peli[3], PHP_EOL;
+            echo "Edad recomendada: " . $peli[4], PHP_EOL;
+            echo "</p>";
+        }
     }
-    for($i = 0;$i < count($peliculas);$i++){
-        echo $peliculas[$i][2];
-    }
+
+
 }

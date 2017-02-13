@@ -2,8 +2,8 @@
 <?php
 session_start();
 $nombre = $_GET["cine"];
-require 'connection.php';
-require 'helperDDBB.php';
+include 'connection.php';
+include 'helperDDBB.php';
 ?>
 <html>
 <head>
@@ -11,6 +11,7 @@ require 'helperDDBB.php';
     <title></title>
 </head>
 <body>
+<?php include ''?>
 <?php
 $conexion = getCon();
 getPeliculas($conexion,$nombre);
