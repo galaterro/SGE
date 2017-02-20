@@ -29,6 +29,7 @@
         </li>
     </ul>
 </header>
+    <?php include 'loginHeader.php'?>
 </div>
 <div class="wrapper">
 <section>

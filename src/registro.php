@@ -14,6 +14,7 @@ if($nombre == null){
 include 'formularioRegistro.php';
 
 }else{
+
     $sql = "INSERT INTO cliente(dni_cli, nombre_cli, apellidos_cli, telefono_cli, cp, usuario, password) VALUES ('" . $dni . "', '" .
         $nombre . "', '" . $apellidos . "', " . $telefono . ", " . $cp .  ", '" .
         $usuario . "', '" . $password . "');";
