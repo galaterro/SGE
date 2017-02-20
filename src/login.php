@@ -6,8 +6,8 @@
  * Time: 17:48
  */
 session_start();
-$user = $_GET["usuario"];
-$pass = $_GET["password"];
+$user = $_POST["usuario"];
+$pass = $_POST["password"];
 include 'connection.php';
 include 'helperDDBB.php';
 
@@ -20,6 +20,6 @@ $conexion = getCon();
     $caca = new Usuario($cliente[1],$cliente[2],$cliente[3],$cliente[4],$cliente[5],
         $cliente[6], $cliente[7], $cliente[8]);
 
-    $_SESSION['user'] = $caca;
+    $_SESSION['user'] = $caca.getUsuario();
 
 http_redirect('index.php');
