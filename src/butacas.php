@@ -15,6 +15,7 @@ include 'helperDDBB.php';
     <?php
     $conexion = getCon();
     getInfoButacas($conexion,$id_pelicula);
+    closeCon($conexion);
     ?>
 </form>
 </body>

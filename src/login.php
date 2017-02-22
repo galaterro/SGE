@@ -21,5 +21,5 @@ $conexion = getCon();
         $cliente[6], $cliente[7], $cliente[8]);
 
     $_SESSION['user'] = $caca.getUsuario();
-
+closeCon($conexion);
 http_redirect('index.php');

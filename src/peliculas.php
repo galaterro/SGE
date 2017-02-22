@@ -15,6 +15,7 @@ include 'helperDDBB.php';
     <?php
     $conexion = getCon();
     getPeliculas($conexion,$nombre);
+    closeCon($conexion);
     ?>
 </form>
 </body>

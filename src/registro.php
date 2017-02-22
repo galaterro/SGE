@@ -21,6 +21,7 @@ include 'formularioRegistro.php';
     $conexion = getCon();
     if($conexion->query($sql) === TRUE){
         echo 'Registro realizado con éxito';
+        http_redirect('index.php');
     }else{
         echo "HA OCURRIDO UN ERROR, POR FAVOR, INTENTELO DE NUEVO";
     }

@@ -37,27 +37,30 @@ function getPeliculas($mysqli, $nombre){
 }
 
 function getInfoButacas($mysqli, $id_pelicula){
-    $salas = $mysqli->query("SELECT id_sala FROM pelicula WHERE id_pelicula = '" . $id_pelicula . "'");
+    $salas = $mysqli->query("SELECT * FROM pelicula WHERE id_pelicula = '" . $id_pelicula . "'");
     $sala = $salas->fetch_row();
-    $butacas = $mysqli->query("SELECT * FROM butaca WHERE id_sala = " . $sala[0] );
-    $_SESSION["sala"] = $sala[0];;
+    $butacas = $mysqli->query("SELECT * FROM butaca WHERE id_sala = " . $sala[1]);
+    $_SESSION["sala"] = $sala[1];
     $_SESSION["pelicula"] = $id_pelicula;
-    echo "<p>Butacas disponibles para " . $sala[1] . ":</p>";
+    echo "<p>Butacas disponibles para " . $sala[2] . ":</p>";
     while ($butaca = $butacas->fetch_row()) {
-       if(getUsedButaca($butaca[0], $mysqli)){
-           echo '<button type="submit" class="reservar" name="id" value="' . $butaca[0] .'">No Disponible</button>';
+        echo 'Info butaca: ' ./*id*/ $butaca[0] . /*fila*/$butaca[1] . /*sala*/$butaca[2];
+      if(getUsedButaca($butaca[0], $mysqli)){
+          echo '<button type="submit" class="reservar" name="id" value="' . $butaca[0] .'">No Disponible</button>';
+           echo 'no disponible';
        }else{
+           echo 'disponible';
            echo '<button type="submit" class="reservar" name="id" value="' . $butaca[0] .'">Reservar</button>';
        }
     }
 }
 
 function getUsedButaca($id_butaca, $mysqli){
-    $usadas = $mysqli->query("SELECT * FROM reserva WHERE id_butaca = " . $id_butaca);
+    $usadas = $mysqli->query("SELECT id_reserva FROM reserva WHERE id_butaca = " . $id_butaca);
     $usada = $usadas.fetch_row();
-    if(!$usada[0]){
-        return true;
-    }else{
+    if(empty($usada[0])){
         return false;
+    }else{
+        return true;
     }
 }
