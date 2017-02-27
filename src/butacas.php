@@ -11,7 +11,7 @@ include 'helperDDBB.php';
     <title></title>
 </head>
 <body>
-<form method="get" action="butacas.php">
+<form method="get" action="index.php">
     <?php
     $conexion = getCon();
     getInfoButacas($conexion,$id_pelicula);
