@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <?php
 session_start();
-$id_butaca = $_GET["id"];
+$id = explode('|',$_GET["id"]);
 include 'connection.php';
 include 'helperDDBB.php';
-$_SESSION["id_butaca"] = $id_butaca;
+$_SESSION["id_butaca"] = $id[0];
+$_SESSION["id_sesion"] = $id[1];
 ?>
 <html>
 <head>
@@ -18,7 +19,7 @@ $_SESSION["id_butaca"] = $id_butaca;
     <input type="submit" class="enviar" title="Enviar">
     <?php
     $conexion = getCon();
-    $butaca = getButaca($conexion, $id_butaca);
+    $butaca = getButaca($conexion, $id[0]);
     closeCon($conexion);
     ?>
 </form>
