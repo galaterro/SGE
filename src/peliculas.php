@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?php
-session_start();
 $nombre = $_GET["cine"];
 include 'connection.php';
 include 'helperDDBB.php';

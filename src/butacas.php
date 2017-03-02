@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
-session_start();
 $id_pelicula = $_GET["id"];
+$_SESSION["id_pelicula"] = $id_pelicula;
 include 'connection.php';
 include 'helperDDBB.php';
 ?>
@@ -11,7 +11,7 @@ include 'helperDDBB.php';
     <title></title>
 </head>
 <body>
-<form method="get" action="index.php">
+<form method="get" action="correoreserva.php">
     <?php
     $conexion = getCon();
     getInfoButacas($conexion,$id_pelicula);

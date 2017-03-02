@@ -5,7 +5,7 @@
  * Date: 10/02/2017
  * Time: 16:56
  */
-session_start();
+
 function getCines($mysqli) {
     $cines = $mysqli->query("SELECT * FROM cine");
     return $cines;
@@ -74,4 +74,16 @@ function getUsedButaca($id_butaca, $mysqli){
         }
     }
     return $butacaUsada;
+}
+
+function getButaca($mysqli, $id_butaca){
+    $butaca = $mysqli->query("SELECT * FROM butaca WHERE id_butaca = " . $id_butaca);
+    $butaca->fetch_row();
+    return $butaca;
+}
+
+function getNombrePelicula($mysqli, $id_pelicula){
+    $butaca = $mysqli->query("SELECT nombre_pelicula FROM pelicula WHERE id_pelicula = " . $id_pelicula);
+    $nombre = $butaca->fetch_row();
+    return $nombre[0];
 }
