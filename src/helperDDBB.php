@@ -5,7 +5,10 @@
  * Date: 10/02/2017
  * Time: 16:56
  */
-
+/**
+ * @param $mysqli
+ * @return mixed
+ */
 function getCines($mysqli) {
     $cines = $mysqli->query("SELECT * FROM cine");
     return $cines;
@@ -80,24 +83,46 @@ function getUsedButaca($id_butaca, $mysqli, $id_sesion){
     return $butacaUsada;
 }
 
+/**
+ * @param $mysqli
+ * @param $id_butaca
+ * @return mixed
+ */
 function getButaca($mysqli, $id_butaca){
     $butaca = $mysqli->query("SELECT * FROM butaca WHERE id_butaca = " . $id_butaca);
     $butaca->fetch_row();
     return $butaca;
 }
 
+/**
+ * @param $mysqli
+ * @param $id_pelicula
+ * @return mixed
+ */
 function getNombrePelicula($mysqli, $id_pelicula){
     $butaca = $mysqli->query("SELECT nombre_pelicula FROM pelicula WHERE id_pelicula = " . $id_pelicula);
     $nombre = $butaca->fetch_row();
     return $nombre[0];
 }
 
+/**
+ * @param $mysqli
+ * @param $id_sesion
+ * @return mixed
+ */
 function getSesion($mysqli, $id_sesion){
     $pelicula = $mysqli->query('SELECT hora_sesion FROM sesion WHERE id_sesion = ' . $id_sesion);
     $sesion = $pelicula->fetch_row();
     return $sesion[0];
 }
 
+/**
+ * @param $mysqli
+ * @param $id_pelicula
+ * @param $id_butaca
+ * @param $id_sesion
+ * @return mixed
+ */
 function crearReserva($mysqli, $id_pelicula, $id_butaca, $id_sesion){
     $sql = 'INSERT INTO reserva (id_pelicula, id_sesion, id_butaca, id_cliente) VALUES (' . $id_pelicula . ', ' . $id_sesion . ', ' . $id_butaca . ", null" .")";
     if ($mysqli->query($sql) === TRUE) {
