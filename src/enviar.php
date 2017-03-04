@@ -12,14 +12,14 @@ $id_butaca = $_SESSION["id_butaca"];
 $id_sesion = $_SESSION["id_sesion"];
 include 'connection.php';
 include 'helperDDBB.php';
-include "qrlib.php";
-require_once('class.phpmailer.php');
+include "utils/qrlib/qrlib.php";
+require_once('utils/phpmailer/class.phpmailer.php');
 $nombre_imagen = rand(1,99999999);
 $conexion = getCon();
 $nombre_pelicula =  getNombrePelicula($conexion, $id_pelicula);
 $id_reserva = crearReserva($conexion, $id_pelicula, $id_butaca, $id_sesion);
 
-QRcode::png('id_reserva: ' . $id_reserva, $nombre_imagen . '.png', 'L', 4, 2);
+QRcode::png('id_reserva: ' . $id_reserva . " Tonto el que lo lea", $nombre_imagen . '.png', 'H', 7, 2);
 
 $from="From: TEST\r\nMIME-Version: 1.0\r\nContent-type: text/html; charset=iso-8859-1";
 $subject = "Tus entradas para: " . $nombre_pelicula;

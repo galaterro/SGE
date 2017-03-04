@@ -20,23 +20,23 @@ function getCines($mysqli) {
  * @param $nombre
  */
 function getPeliculas($mysqli, $nombre){
-    echo "<p>Peliculas que hay disponibles en " . $nombre . ":</p>";
     $cine = $mysqli->query("SELECT id_cine FROM cine WHERE nombre_cine = '" . $nombre . "'");
     $cine = $cine->fetch_row();
     $salas = $mysqli->query("SELECT id_sala FROM sala WHERE id_cine = " . $cine[0] );
-
+    echo '<table class="table table-hover">';
+    echo "<caption>Peliculas que hay disponibles en " . $nombre . ":</caption>";
+    echo '<th>Nombre de la película</th><th>Duración de la película</th><th>Edad recomendada</th><th>Reservar Entradas</th>';
     while ($sala = $salas->fetch_row()) {
         $peliculas = $mysqli->query("SELECT * FROM pelicula WHERE id_sala = " . $sala[0]);
         while($peli = $peliculas->fetch_row()){
-            echo "<p>Nombre de la película: " . $peli[1], PHP_EOL;
-            echo "Duración de la película: " . $peli[2], PHP_EOL;
-            echo "Edad recomendada: " . $peli[3], PHP_EOL;
-            echo '<button type="submit" class="reservar" name="id" value="' . $peli[0] .'">Reservar</button>' ;
-            echo "</p>";
+            echo "<tr><td>" . $peli[1] . '</td>';
+            echo "<td>" . $peli[2] . ' minutos</td>';
+            echo "<td>" . $peli[3] . ' años</td>';
+            echo '<td><button type="submit" class="reservar" name="id" value="' . $peli[0] .'">Reservar</button> </td>';
+            echo "</tr>";
         }
     }
-
-
+    echo '</table>';
 }
 
 /**
@@ -49,19 +49,24 @@ function getInfoButacas($mysqli, $id_pelicula){
 
     $_SESSION["sala"] = $sala[4];
     $_SESSION["pelicula"] = $id_pelicula;
-    echo "<p>Butacas disponibles para " . $sala[1] . ":</p>";
+    echo "<div class='col-md-4 col-md-offset-4'><h4>Butacas que hay disonibles para "  . $sala[1] . "</h4></div>";
     $sesiones = $mysqli->query('SELECT * FROM sesion WHERE id_pelicula = ' . $id_pelicula . ' ORDER BY hora_sesion');
     while ($sesion = $sesiones->fetch_row()){
-        echo '<p>Sesion de la hora: ' . $sesion[1] . '</p>';
+        echo '<div class="col-md-6"><table class="table table-hover">';
+        echo '<caption>Sesion de la hora: ' . $sesion[1] . '"</caption>';
+        echo '<th>Fila de la butaca</th><th>Columna de la butaca</th><th>Disponibilidad</th>';
+
         $butacas = $mysqli->query("SELECT * FROM butaca WHERE id_sala = " . $sala[4]);
         while ($butaca = $butacas->fetch_row()) {
-            echo '<p>Butaca en la fila: ' . $butaca[1] . ' y en la columna: ' . $butaca[2] . " ";
+
             if(getUsedButaca($butaca[0], $mysqli, $sesion[0])){
-                echo '<button type="submit" class="reservar" name="id" value="' . $butaca[0] . '"disabled>No Disponible</button></p>';
+                echo '<tr class="danger"><td>' . $butaca[1] . '</td><td>' . $butaca[2] . '</td><td><button type="submit" class="reservar" name="id" value="' . $butaca[0] . '"disabled>No Disponible</button></td></tr>';
             }else{
-                echo '<button type="submit" class="reservar" name="id" value="' . $butaca[0] . '|' . $sesion[0] . '">Reservar</button>';
+                echo '<tr class="success"><td>' . $butaca[1] . '</td><td>' . $butaca[2] . '</td><td class="active"><button type="submit" class="reservar" name="id" value="' . $butaca[0] . '|' . $sesion[0] . '">Reservar</button></td>';
             }
+            echo '</tr>';
         }
+        echo '</table></div>';
     }
 }
 
