@@ -19,7 +19,6 @@
     <header>
         <?php include 'navbar.php'?>
     </header>
-    <?php include 'loginHeader.php'; ?>
 </div>
 <div class="wrapper">
     <section>

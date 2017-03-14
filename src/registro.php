@@ -17,20 +17,7 @@
 <body>
 <div class="header">
     <header>
-        <ul>
-            <li>
-                Inicio
-            </li>
-            <li>
-                <a href="cines.php"> Cines </a>
-            </li>
-            <li>
-                <a href="cartelera.php"> Cartelera </a>
-            </li>
-            <li>
-                <a href="reservar.php"> Reservar </a>
-            </li>
-        </ul>
+        <?php include 'navbar.php'?>
     </header>
 </div>
 <div class="wrapper">

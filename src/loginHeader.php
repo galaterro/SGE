@@ -14,5 +14,5 @@ if(!isset($_SESSION['user'])){
     echo '<form method="post" action="login.php"><input type="text" name="usuario" placeholder="Usuario">
     <input type="password" name="password"> <input type="submit" value="Enviar"></form>';
 }else{
-    echo 'Bienvenido de nuevo ' . $_SESSION['user'].getUsuario();
+    echo 'Bienvenido de nuevo ' . $_SESSION['user'];
 }

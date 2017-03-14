@@ -8,14 +8,42 @@
  */
 class Usuario
 {
-    public $dni;
-    public $nombre;
-    public $apellidos;
-    public $telefono;
-    public $cp;
-    public $puntos;
-    public $usuario;
-    public $password;
+    /**
+     * @var
+     */
+    private $dni;
+    /**
+     * @var
+     */
+    private $nombre;
+    /**
+     * @var
+     */
+    private $apellidos;
+    /**
+     * @var
+     */
+    private $telefono;
+    /**
+     * @var
+     */
+    private $cp;
+    /**
+     * @var
+     */
+    private $puntos;
+    /**
+     * @var
+     */
+    private $usuario;
+    /**
+     * @var
+     */
+    private $password;
+    /**
+     * @var
+     */
+    private $id;
 
     /**
      * Usuario constructor.
@@ -39,6 +67,24 @@ class Usuario
         $this->usuario = $usuario;
         $this->password = $password;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+
 
 
 
@@ -169,6 +215,8 @@ class Usuario
     {
         $this->password = $password;
     }
+
+
 
 
 }
